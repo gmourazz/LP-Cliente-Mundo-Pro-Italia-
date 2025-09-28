@@ -9,15 +9,11 @@ const Pricing = () => {
       price: 'R$ 5.390',
       priceNote: 'Por pessoa em quarto duplo',
       ctaHref:
-        'https://api.whatsapp.com/send?phone=5554991831562&text=Ol%C3%A1!%20Estou%20navegando%20na%20p%C3%A1gina%20de%20viagem%20para%20o%20Peru%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20categoria%20A%20de%20hospedagem.',
-      labels: {
-        hotel: 'Hostal Inti e Killa ou similar',
-        // sem "machu" e "train" aqui
-      },
+        'https://api.whatsapp.com/send?phone=5554991831562&text=Ol%C3%A1!%20Estou%20navegando%20na%20p%C3%A1gina%20de%20viagem%20para%20o%20Atacama%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20categoria%20A%20de%20hospedagem.',
+      labels: { hotel: 'Hostal Inti e Killa ou similar' },
       description: {
         hotel:
           'Opção econômica, perfeita para viajantes que buscam economizar sem comprometer a experiência. Os quartos são simples, mas oferecem o básico para uma estadia confortável. Esta escolha é adequada para aqueles que preferem gastar menos com acomodação e mais com atividades e exploração do Deserto do Atacama.',
-        // sem machupicchu / train aqui
       },
       images: [
         { src: '/img/beneficios/categoriaimagemum.png' },
@@ -30,10 +26,8 @@ const Pricing = () => {
       price: 'R$ 5.990',
       priceNote: 'Por pessoa em quarto duplo',
       ctaHref:
-        'https://api.whatsapp.com/send?phone=5554991831562&text=Ol%C3%A1!%20Estou%20navegando%20na%20p%C3%A1gina%20de%20viagem%20para%20o%20Peru%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20categoria%20B%20de%20hospedagem.',
-      labels: {
-        hotel: 'Hotel Parina ou similar',
-      },
+        'https://api.whatsapp.com/send?phone=5554991831562&text=Ol%C3%A1!%20Estou%20navegando%20na%20p%C3%A1gina%20de%20viagem%20para%20o%20Atacama%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20categoria%20B%20de%20hospedagem.',
+      labels: { hotel: 'Hotel Parina ou similar' },
       description: {
         hotel:
           'Uma escolha intermediária, que oferece um equilíbrio entre conforto e acessibilidade. Os viajantes encontrarão quartos bem equipados e comodidades para uma estadia agradável. É uma opção sólida para aqueles que desejam desfrutar de um nível razoável de conforto sem ultrapassar o orçamento',
@@ -48,16 +42,13 @@ const Pricing = () => {
         { src: '/img/beneficios/categoriabimagemtres.png' },
       ],
     },
-
-       {
+    {
       name: 'Categoria C',
       price: 'R$ 6.990',
       priceNote: 'Por pessoa em quarto duplo',
       ctaHref:
-        'https://api.whatsapp.com/send?phone=5554991831562&text=Ol%C3%A1!%20Estou%20navegando%20na%20p%C3%A1gina%20de%20viagem%20para%20o%20Peru%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20categoria%20B%20de%20hospedagem.',
-      labels: {
-        hotel: 'Poblado Kimal ou similar',
-      },
+        'https://api.whatsapp.com/send?phone=5554991831562&text=Ol%C3%A1!%20Estou%20navegando%20na%20p%C3%A1gina%20de%20viagem%20para%20o%20Atacama%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20categoria%20C%20de%20hospedagem.',
+      labels: { hotel: 'Poblado Kimal ou similar' },
       description: {
         hotel:
           'Destaca-se como uma opção de hospedagem sofisticada e imersa na cultura local. Oferece aos seus hóspedes uma experiência única, harmonizando a beleza natural do deserto com instalações elegantes. Os quartos bem decorados, combinados com ótimo atendimento, elevam a estadia a um nível de conforto e sofisticação incomparáveis.',
@@ -71,7 +62,8 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="hospedagem" className="py-10" style={{ backgroundColor: '#AC0039' }}>
+    <section id="hospedagem" className="py-10 no-shadows" style={{ backgroundColor: '#AC0039' }}>
+      <style>{`.no-shadows, .no-shadows * { box-shadow:none !important; text-shadow:none !important; filter:none !important; }`}</style>
       <div className="container">
         {/* ===== Header Desktop ===== */}
         <motion.div
@@ -134,7 +126,7 @@ const Pricing = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="rounded-3xl p-6 shadow-xl"
+              className="rounded-3xl p-6"
               style={{ backgroundColor: '#FAF3E1' }}
             >
               <div className="grid lg:grid-cols-3 gap-8 mb-6">
@@ -178,7 +170,7 @@ const Pricing = () => {
                       lineHeight: 1.25,
                     }}
                   >
-                    {/* HOTEL (sempre existe) */}
+                    {/* HOTEL */}
                     <div>
                       <p
                         className="font-bold md:text-[18px]"
@@ -194,13 +186,10 @@ const Pricing = () => {
                       )}
                     </div>
 
-                    {/* MACHU PICCHU (só renderiza se houver label/descrição) */}
+                    {/* MACHU PICCHU (se existir) */}
                     {category.labels?.machu && category.description?.machupicchu && (
                       <div>
-                        <p
-                          className="font-bold md:text-[18px]"
-                          style={{ fontFamily: '"Work Sans", sans-serif' }}
-                        >
+                        <p className="font-bold md:text-[18px]" style={{ fontFamily: '"Work Sans", sans-serif' }}>
                           {category.labels.machu}:
                         </p>
                         <p className="md:text-[15px] md:leading-[1.35]">
@@ -209,13 +198,10 @@ const Pricing = () => {
                       </div>
                     )}
 
-                    {/* TREM (só se existir) */}
+                    {/* TREM (se existir) */}
                     {category.labels?.train && category.description?.train && (
                       <div>
-                        <p
-                          className="font-bold md:text-[18px]"
-                          style={{ fontFamily: '"Work Sans", sans-serif' }}
-                        >
+                        <p className="font-bold md:text-[18px]" style={{ fontFamily: '"Work Sans", sans-serif' }}>
                           {category.labels.train}:
                         </p>
                         <p className="md:text-[15px] md:leading-[1.35]">
@@ -230,7 +216,7 @@ const Pricing = () => {
                 <div className="flex flex-col items-center lg:items-end justify-center">
                   <div className="relative flex flex-col items-center w-[260px] md:w-[350px]">
                     <div
-                      className="text-center shadow-md md:block w-[260px] h-[130px] md:w-[350px] md:h-[163px] rounded-[18px] md:rounded-[24px]"
+                      className="text-center md:block w-[260px] h-[130px] md:w-[350px] md:h-[163px] rounded-[18px] md:rounded-[24px]"
                       style={{ backgroundColor: '#A0D3F1' }}
                     >
                       <div className="pt-3 md:pt-4">
@@ -272,7 +258,6 @@ const Pricing = () => {
                             color: '#222223',
                             fontWeight: 800,
                             letterSpacing: '0.3px',
-                            boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
                             fontFamily: '"Work Sans", sans-serif',
                           }}
                         >
@@ -300,12 +285,11 @@ const Pricing = () => {
                     >
                       {img.title}
                     </h4>
-
                     <a
                       href={img.src}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block group rounded-2xl overflow-hidden shadow-lg mx-auto"
+                      className="block group rounded-2xl overflow-hidden mx-auto"
                       style={{ width: '350px', height: '250px' }}
                     >
                       <img
@@ -324,7 +308,6 @@ const Pricing = () => {
                         style={{ width: 328, height: 234 }}
                       />
                     </a>
-
                     <p
                       className="text-center mt-2"
                       style={{ color: '#222223', fontFamily: '"Roboto Mono", monospace' }}

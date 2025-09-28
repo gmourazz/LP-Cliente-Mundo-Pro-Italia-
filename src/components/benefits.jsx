@@ -36,9 +36,14 @@ const Card = ({ item, index }) => {
       viewport={{ once: true, margin: "-60px" }}
       whileHover={hoverFx}
       whileTap={tapFx}
-      className={`w-[320px] p-4 rounded-2xl text-center shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col items-center
-        ${isAlimentacao ? "h-[280px]" : "h-[220px]"}  md:w-[344px] md:h-[240px] md:p-4`}
-      style={{ backgroundColor: "#F2EA86" }}
+      className={`w-[320px] p-4 text-center flex flex-col items-center ${
+        isAlimentacao ? "h-[280px]" : "h-[220px]"
+      } md:w-[344px] md:h-[240px] md:p-4`}
+      style={{
+        backgroundColor: "#F2EA86",
+        borderRadius: "16px",
+        border: "1px solid #E5E7EB",
+      }}
     >
       <div className="mb-2 md:mb-2">
         <img
@@ -90,11 +95,7 @@ const Benefits = () => {
       id: "hospedagem",
       iconSrc: "/img/beneficios/hospedagem.png",
       title: "Hospedagem",
-      description: (
-        <>
-          5 noites em San Pedro do Atacama.
-        </>
-      ),
+      description: <>5 noites em San Pedro do Atacama.</>,
     },
     assistencia: {
       id: "assistencia",
@@ -103,8 +104,7 @@ const Benefits = () => {
       description: (
         <>
           Acompanhamento pré-viagem
-          <br />
-          e durante a viagem 24Hrs.
+          <br />e durante a viagem 24Hrs.
         </>
       ),
     },
@@ -124,7 +124,7 @@ const Benefits = () => {
           <br />
           Vallecito inclui snacks.
           <br />
-          - O passeio das Lagunas de Baltinache 
+          - O passeio das Lagunas de Baltinache
           <br />
           inclui café da manhã se o tour for de manhã
           <br />
@@ -142,11 +142,10 @@ const Benefits = () => {
           <br />
           - Passeio Vallecito;
           <br />
-          - Passeio Pedras Rojas e 
+          - Passeio Pedras Rojas e
           <br />
           Lagunas Altiplânicas;
-          <br />
-          - Lagunas Escondidas de Baltinache;
+          <br />- Lagunas Escondidas de Baltinache;
         </>
       ),
     },
@@ -179,8 +178,7 @@ const Benefits = () => {
       description: (
         <>
           1 Item pessoal;
-          <br />
-          1 Bagagem de mão até 10Kg.
+          <br />1 Bagagem de mão até 10Kg.
         </>
       ),
     },
@@ -244,9 +242,19 @@ const Benefits = () => {
   return (
     <section
       id="viagem"
-      className="py-12 md:py-16"
+      className="py-12 md:py-16 no-shadows"
       style={{ backgroundColor: "#A0D3F1", fontFamily: '"Roboto Mono", monospace' }}
     >
+      <style>{`
+        /* ZERA QUALQUER SOMBRA / FILTER DO BLOCO E DESCENDENTES */
+        .no-shadows, .no-shadows * {
+          box-shadow: none !important;
+          text-shadow: none !important;
+          filter: none !important;
+        }
+        .rounded-image { border-radius: 18px; }
+      `}</style>
+
       <div className="container">
         {/* Linha laranja ACIMA da imagem (suave) */}
         <div className="flex justify-center mb-6">
@@ -261,38 +269,65 @@ const Benefits = () => {
           />
         </div>
 
-        {/* Imagem topo */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto mb-6 md:mb-8"
-          style={{ width: 870, height: 344, maxWidth: "100%" }}
-        >
-          <img src={srcDesktop} alt="Atacama — imagem de abertura" className="hidden md:block w-full h-full object-cover rounded-[18px]" />
-          <img src={srcMobile} alt="Atacama — imagem de abertura (mobile)" className="block md:hidden w-full h-auto object-cover rounded-[18px]" />
-        </motion.div>
+        {/* Container principal da imagem com faixa azul */}
+        <div className="relative">
+          {/* Faixa azul atrás do texto ATACAMA */}
+          <div 
+            className="absolute top-0 left-0 w-full h-24 md:h-32 z-10"
+            style={{ 
+              backgroundColor: '#A0D3F1',
+              marginTop: '-1px'
+            }}
+          />
+          
+          {/* Imagem topo */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-20 mx-auto mb-6 md:mb-8"
+            style={{ width: 870, height: 344, maxWidth: "100%" }}
+          >
+            <img
+              src={srcDesktop}
+              alt="Atacama — imagem de abertura"
+              className="hidden md:block w-full h-full object-cover rounded-image"
+            />
+            <img
+              src={srcMobile}
+              alt="Atacama — imagem de abertura (mobile)"
+              className="block md:hidden w-full h-auto object-cover rounded-image"
+            />
+          </motion.div>
+        </div>
 
-{/* ===== Bloco laranja Duração — CENTRALIZADO ===== */}
+        {/* ===== Bloco laranja Duração — CENTRALIZADO ===== */}
         <div className="w-full flex justify-center">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45 }}
-            className="mb-8 -mt-12 md:mt-0" /* puxa ~12px para cima no mobile; desktop intacto */
+            className="mb-8 -mt-12 md:mt-0"
           >
             <div
-              className="
-                w-[280px] h-[72px] md:w-[345px] md:h-[90px]
-                rounded-2xl flex items-center justify-center gap-3 px-5
-              "
-              style={{ backgroundColor: ORANGE }}
+              className="flex items-center justify-center gap-3 px-5"
+              style={{
+                width: "280px",
+                height: "72px",
+                backgroundColor: ORANGE,
+                borderRadius: "16px",
+                border: "1px solid rgba(0,0,0,0.1)",
+              }}
             >
-              <img src="/img/tempo.png" alt="" className="w-[42px] h-[36px] md:w-[54px] md:h-[44px] object-contain" />
+              <img
+                src="/img/tempo.png"
+                alt=""
+                className="w-[42px] h-[36px] md:w-[54px] md:h-[44px] object-contain"
+              />
               <span
-                className="font-extrabold text-[16px] md:text-[28px]"
+                className="font-extrabold text-[16px] md:text-[22px]"
                 style={{ color: "#FAF3E1", fontFamily: '"Work Sans", sans-serif', lineHeight: 1 }}
               >
                 Duração: 6 dias
@@ -306,14 +341,17 @@ const Benefits = () => {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="text-center text-[35px] md:text-[45px]"
+          className="text-center text-[30px] md:text-[45px]"
           style={{ color: ORANGE, fontFamily: '"Work Sans", sans-serif', fontWeight: 800, lineHeight: 1.02 }}
         >
           <strong>Viva intensamente o Atacama</strong>
         </motion.h2>
 
         {/* MOBILE: quebras de linha visuais */}
-        <div className="block md:hidden mt-3 mb-10 text-center text-[12px]" style={{ color: "#222223", fontFamily: '"Roboto Mono", monospace', lineHeight: 1.35 }}>
+        <div
+          className="block md:hidden mt-3 mb-10 text-center text-[12px]"
+          style={{ color: "#222223", fontFamily: '"Roboto Mono", monospace', lineHeight: 1.35 }}
+        >
           <p>Nosso pacote de viagem inclui passeios pelas</p>
           <p>principais paisagens da região, visita a águas</p>
           <p>termais e contato com a cultura local.</p>
@@ -338,7 +376,15 @@ const Benefits = () => {
 
         {/* LINHA (entre textos) */}
         <div className="flex justify-center mb-10">
-          <div style={{ width: 1250, maxWidth: "100%", height: 2, backgroundColor: ORANGE_SOFT, borderRadius: 2 }} />
+          <div
+            style={{
+              width: 1250,
+              maxWidth: "100%",
+              height: 2,
+              backgroundColor: ORANGE_SOFT,
+              borderRadius: 2,
+            }}
+          />
         </div>
 
         {/* TÍTULO + TEXTO (2) */}
@@ -346,22 +392,28 @@ const Benefits = () => {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="text-center text-[35px] md:text-[45px]"
+          className="text-center text-[30px] md:text-[45px]"
           style={{ color: ORANGE, fontFamily: '"Work Sans", sans-serif', fontWeight: 800, lineHeight: 1.02 }}
         >
           <strong>Mergulhe na Experiência Atacama</strong>
         </motion.h3>
 
-        <div className="block md:hidden mt-3 mb-8 text-center text-[12px]" style={{ color: "#222223", fontFamily: '"Roboto Mono", monospace', lineHeight: 1.35 }}>
+        <div
+          className="block md:hidden mt-3 mb-8 text-center text-[12px]"
+          style={{ color: "#222223", fontFamily: '"Roboto Mono", monospace', lineHeight: 1.35 }}
+        >
           <p>Explore o Atacama sem preocupações!</p>
           <p>Nosso pacote de viagem exclusivo</p>
           <p>oferece diversos serviços selecionados</p>
           <p>para tornar sua viagem incrível!</p>
         </div>
 
-        <div className="hidden md:block mt-8 mb-10 text-center text-[18px]" style={{ color: "#222223", fontFamily: '"Roboto Mono", monospace', lineHeight: 1.35 }}>
-          <p> Explore o Atacama sem preocupações! Nosso pacote de viagem exclusivo </p>
-          <p> oferece diversos serviços selecionados para tornar sua viagem incrível! </p>
+        <div
+          className="hidden md:block mt-8 mb-10 text-center text-[18px]"
+          style={{ color: "#222223", fontFamily: '"Roboto Mono", monospace', lineHeight: 1.35 }}
+        >
+          <p>Explore o Atacama sem preocupações! Nosso pacote de viagem exclusivo</p>
+          <p>oferece diversos serviços selecionados para tornar sua viagem incrível!</p>
         </div>
 
         {/* Grade cards amarelos beneficios */}
@@ -378,10 +430,22 @@ const Benefits = () => {
         </motion.div>
 
         {/* Pacote Não Inclui */}
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6 }} className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
           <h3
             className="mb-4 md:mb-6"
-            style={{ color: "#AC0039", fontFamily: '"Work Sans", sans-serif', fontWeight: 800, fontSize: 45, lineHeight: 1.05 }}
+            style={{
+              color: "#AC0039",
+              fontFamily: '"Work Sans", sans-serif',
+              fontWeight: 800,
+              fontSize: 35,
+              lineHeight: 1.05,
+            }}
           >
             Pacote Não Inclui
           </h3>
@@ -400,12 +464,22 @@ const Benefits = () => {
                 viewport={{ once: true, margin: "-60px" }}
                 whileHover={hoverFx}
                 whileTap={tapFx}
-                className="w-[320px] h-[120px] p-6 md:w-[344px] md:h-[146px] md:p-4 rounded-2xl shadow-lg flex items-center justify-start text-left"
-                style={{ backgroundColor: "#AC0039" }}
+                className="flex items-center justify-start text-left"
+                style={{
+                  width: "320px",
+                  height: "120px",
+                  backgroundColor: "#AC0039",
+                  borderRadius: "16px",
+                  padding: "24px",
+                  border: "1px solid rgba(0,0,0,0.1)",
+                }}
               >
                 <div className="flex items-center gap-2.5 md:gap-6 w-full">
                   <img src={item.iconSrc} alt="" className="w-10 h-10 md:w-12 md:h-12 object-contain" />
-                  <p className="tracking-[-0.01em]" style={{ color: "#F9F2E1", fontFamily: '"Work Sans", sans-serif', fontWeight: 800, fontSize: 20, lineHeight: 1.15 }}>
+                  <p
+                    className="tracking-[-0.01em]"
+                    style={{ color: "#F9F2E1", fontFamily: '"Work Sans", sans-serif', fontWeight: 800, fontSize: 20, lineHeight: 1.15 }}
+                  >
                     {item.text}
                   </p>
                 </div>

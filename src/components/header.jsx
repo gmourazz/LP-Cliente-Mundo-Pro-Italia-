@@ -14,19 +14,22 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50" style={{ background: "#F0D9D1" }}>
-      <div className="relative">
-        <div className="container px-2 md:px-0">
-          <div className="flex items-center justify-between py-3 md:py-4">
-            {/* LOGO — encostada à esquerda (desktop volta a -ml-20; mobile sem deslocar) */}
-      <div className="flex items-center md:-ml-12"> {/* era md:-ml-20 */}
-          <img
-          src="/img/logomundopro.png"
-          alt="Mundo Pró Viagens"
-          className="h-20 md:h-30 object-contain block"
-          />
-      </div>
+    <header className="sticky top-0 z-50 no-shadows" style={{ background: "#F0D9D1" }}>
+      <style>{`
+        .no-shadows, .no-shadows * { box-shadow: none !important; text-shadow: none !important; filter: none !important; }
+      `}</style>
 
+      <div className="relative">
+        <div className="container mx-auto max-w-[1320px] px-4 md:px-0">
+          <div className="flex items-center justify-between py-5 md:py-5">
+            {/* LOGO */}
+            <a href="#inicio" className="block">
+              <img 
+                src="/img/logomundopro.png" 
+                alt="Mundo Pró Viagens" 
+                className="h-16 md:h-[86px] object-contain" 
+              />
+            </a>
 
             {/* Botão Mobile */}
             <motion.button
@@ -41,10 +44,10 @@ const Header = () => {
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </motion.button>
 
-            {/* NAV DESKTOP — inalterado */}
+            {/* NAV DESKTOP */}
             <nav
               role="navigation"
-              className="hidden md:flex items-center space-x-2 bg-[#222223] rounded-full px-2 py-2 shadow absolute right-3 top-1/2 -translate-y-1/2"
+              className="hidden md:flex items-center space-x-2 bg-[#222223] rounded-full px-2 py-2 absolute right-3 top-1/2 -translate-y-1/2"
               style={{ fontFamily: '"Work Sans", sans-serif' }}
             >
               {navItems.map((item) => (
@@ -53,6 +56,7 @@ const Header = () => {
                   href={item.href}
                   className="px-4 py-3 rounded-full text-sm font-medium text-white transition-colors"
                   whileHover={{ backgroundColor: "#F9F2E1", color: "#000" }}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </motion.a>
@@ -61,7 +65,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* MENU MOBILE: dropdown preto sobre o conteúdo (não ocupa tela toda) */}
+        {/* MENU MOBILE */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -75,7 +79,7 @@ const Header = () => {
               <nav
                 id="mobile-menu"
                 role="navigation"
-                className="w-[82vw] max-w-[360px] rounded-2xl bg-black/95 backdrop-blur p-3 shadow-2xl border border-white/10"
+                className="w-[82vw] max-w-[360px] rounded-2xl bg-black/95 backdrop-blur p-3 border border-white/10"
                 style={{ fontFamily: '"Work Sans", sans-serif' }}
               >
                 <ul className="space-y-1">

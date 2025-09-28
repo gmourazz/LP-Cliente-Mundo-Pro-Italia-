@@ -9,7 +9,7 @@ const FAQ = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // Quebra por parágrafos e aplica tipografia (tamanho compacto opcional)
+  // Quebra por parágrafos e aplica tipografia
   const renderAnswer = (text, small = false) => {
     const parts = String(text).split(/\n\s*\n/);
     return parts.map((chunk, i) => (
@@ -29,135 +29,61 @@ const FAQ = () => {
     ));
   };
 
-  // Cartõezinhos dos circuitos (grid responsivo)
-  const renderCircuits = () => (
-    <div className="w-full max-w-[980px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-      {[
-        {
-          title: "Circuito 1 — Clássico",
-          text: "Roteiro básico com acesso à parte superior de Machu Picchu. A vista mais “postal”, ideal para fotos panorâmicas.",
-        },
-        {
-          title: "Circuito 2 — Completo",
-          text: "O mais procurado. Inclui a rota do Circuito 1 e áreas adicionais como Praça Principal e Templo do Sol. Visão mais completa.",
-        },
-        {
-          title: "Circuito 3 — Alternativo",
-          text: "Focado na parte baixa. Não tem o mesmo ângulo panorâmico, mas ainda rende fotos com a cidadela ao fundo.",
-        },
-      ].map((item, i) => (
-        <div
-          key={i}
-          className="rounded-xl p-4"
-          style={{
-            background: "#FFFFFF",
-            border: "1px solid rgba(0,0,0,0.08)",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.06)",
-          }}
-        >
-          <h5
-            className="mb-2"
-            style={{
-              fontFamily: '"Work Sans", sans-serif',
-              fontWeight: 700,
-              fontSize: "1px",
-              color: "#FD4F0D",
-              textAlign: "left",
-            }}
-          >
-            {item.title}
-          </h5>
-          <p
-            style={{
-              color: "#000000",
-              fontSize: "15px",
-              lineHeight: 1.35,
-              textAlign: "left",
-              letterSpacing: "0.1px",
-            }}
-          >
-            {item.text}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
-
   const faqs = [
-    {
-      question: "Essa viagem é em excursão?",
-      answer:
-        "Não, nossa viagem não é em grupo fechado, o que significa que você terá a liberdade de explorar e aproveitar cada momento conforme suas preferências. Durante os passeios, você estará acompanhado por um guia especializado que irá fornecer informações e orientações, garantindo uma experiência enriquecedora.\n\nMuitas clientes já viajaram sozinhas e destacam que se sentiram muito seguras, tanto em Cusco quanto em Machu Picchu. Além disso, nossa equipe e guias estarão sempre prontos para auxiliar em qualquer situação.",
+    { 
+      question: "Essa viagem é em excursão?", 
+      answer: "Não, nossa viagem não é em grupo fechado, o que significa que você terá a liberdade de explorar e aproveitar cada momento conforme suas preferências. Nossos roteiros não são aquelas \"caravanas\" em ônibus e com guia que passam correndo pelo ponto turístico e você não tem nem tempo de bater foto. Não se preocupe se você nunca viajou ou se não fala inglês, estaremos auxiliando em tudo." 
     },
-    {
-      question: "Que dinheiro devo levar?",
-      answer:
-        "Machu Picchu já inclui ingresso. Não inclui ingresso da Montanha Colorida (30 soles), o Boleto Turístico do Vale Sagrado (90 soles) e o ingresso da Lagoa Humantay (20 soles).",
+    { 
+      question: "Como será o suporte da agência durante a viagem?", 
+      answer: "Aqui na Mundo Pró, você não receberá um \"Boa viagem e tchau\". Estaremos com você durante toda a viagem, auxiliando em tudo o que for necessário. Somos chatos igual mãe, gostamos de perguntar se você já chegou e adoramos receber fotos nas pirâmides, tomando aquela cerveja no resort no Caribe, subindo na Torre Eiffel ou em qualquer outro lugar que você achar diferentão. Para acompanhá-lo em sua viagem, criamos grupos no WhatsApp com o atendente e uma pessoa de suporte. Assim, terá auxílio durante toda a sua jornada." 
     },
-    {
-      question: "Os transportes até pontos turísticos estão inclusos?",
-      answer:
-        "Sim! Todos os passeios incluem transporte desde o hotel até o destino visitado. No retorno, os tours costumam finalizar na Plaza de Armas, o coração de Cusco.",
+    { 
+      question: "Posso mudar a ordem das cidades ou incluir/excluir cidades?", 
+      answer: "Sim. O pacotes que enviamos é apenas uma sugestão otimizada, mas podemos ajustar conforme o seu interesse. Se quiser incluir ou excluir cidades, adaptamos o planejamento e refazemos a simulação de valores para você." 
     },
-    {
-      question: "O pacote inclui transfer do aeroporto ao hotel?",
-      answer:
-        "Os gastos diários variam. Em média, considere 100 a 150 soles por dia (aprox. R$ 130 a R$ 200).",
+    { 
+      question: "Posso escolher outra data ou outros hotéis?", 
+      answer: "Claro. Nós sugerimos estes hotéis, mas podemos listar outras opções para que escolham.\n\nA data que está no PDF é apenas uma sugestão. Podemos simular em outro período se quiser. Mas claro, pode ter alteração no valor." 
     },
-    {
-      question:
-        "Há alguma restrição de idade para participar das atividades no Deserto do Atacama?",
-      answer:
-        "A estação seca (maio a setembro) tem clima mais estável e menos chuvas — ideal para passeios e fotos.",
+    { 
+      question: "Como será feito meu roteiro personalizado e quais as dicas que a agência dará?", 
+      answer: "Nós preparamos um roteiro dia a dia com ingressos, mapas, sugestões de passeios, restaurantes e TODAS as dicas que vai precisar. Você sai do Brasil com TODOS os passos organizados.\n\nA gente vai te dar dicas sobre transporte público, compra de chip de internet, cartões de crédito e até mesmo sobre imigração. Nós vamos cuidar de todos os detalhes da sua viagem." 
     },
-    {
-      question: "Qual o gasto médio com alimentação?",
-      answer:
-        "Sim. Com precauções normais, é um destino seguro. Nossa equipe local dá suporte durante a viagem.",
+    { 
+      question: "Posso incluir transfer do aeroporto ao hotel?", 
+      answer: "Sim, podemos incluir transfers privativos ou compartilhados, de acordo com sua preferência e orçamento. Se preferir, também damos orientações detalhadas de como chegar de transporte público." 
     },
-    {
-      question: "Como funciona o suporte da agência durante a viagem?",
-      answer:
-        "Viajar sozinha é totalmente possível e seguro no Peru. Se optar por quarto single, o pacote tem um acréscimo de cerca de 10% em relação ao valor por pessoa em quarto duplo.\n\nMuitas clientes já viajaram sozinhas e destacam que se sentiram muito seguras, tanto em Cusco quanto em Machu Picchu. Além disso, nossa equipe e guias estarão sempre prontos para auxiliar em qualquer situação.",
+    { 
+      question: "Qual o gasto médio com alimentação?", 
+      answer: "Perfil Econômico:\nAlimentação: Entre 20 a 40 euros por dia.\nFast food, comida em mercado, restaurantes simples.\nTransporte Público: Cerca de 10 euros por dia.\n\nPerfil Médio:\nAlimentação: Entre 50 a 100 euros por dia.\nRestaurantes bem avaliados com pratos com valor médio de 15 euros.\nTransporte: Cerca de 20 a 40 euros por dia. Uber/Taxi são as opções de transporte.\n\nPerfil de Luxo:\nAlimentação: Acima de 150 euros por dia.\nRestaurantes premiados com pratos especiais.\nTransporte: Depende mais de opções privativas, podendo variar de 50 a 100 euros por dia." 
     },
-    {
-      question:
-        "É possível personalizar o itinerário do pacote de acordo com as preferências do cliente?",
-      answer: "__CIRCUITOS__",
+    { 
+      question: "Quais são os métodos de pagamento aceitos para o pacote de viagem?", 
+      answer: "Isso vai depender da companhia aérea escolhida. Algumas parcelam no cartão em 5 ou 6x e outras em 10x. Temos também opção de parcelamento no boleto. Consulte-nos." 
     },
-    {
-      question:
-        "Quais são os documentos necessários para viajar para o Atacama?",
-      answer:
-        "Sim, podemos aumentar ou diminuir noites no Peru e incluir destinos como Lima.",
+    { 
+      question: "Mas moro longe da agência, como vou fazer o pagamento?", 
+      answer: "Não se preocupe. Nosso atendimento é 100% online e seguro." 
     },
-    {
-      question: "Qual é a melhor época do ano para visitar o Atacama?",
-      answer: "Passaporte válido ou RG emitido há menos de 10 anos.",
-    },
-    {
-      question:
-        "Quais são os métodos de pagamento aceitos para o pacote de viagem?",
-      answer: "Até 10x sem juros no cartão de crédito (consulte condições).",
-    },
-    {
-      question: "Mas moro longe da agência, como vou fazer o pagamento?",
-      answer:
-        "Para crianças pequenas ou idosos com mobilidade reduzida, avalie necessidades/limitações antes de confirmar.",
+    { 
+      question: "O que não está incluso no pacote?", 
+      answer: "Serviços que não estejam listados no roteiro.\nTransfers\nRefeições (almoço e jantar) e gastos pessoais, como compras ou transporte fora do roteiro.\nGuias locais particulares — nossos roteiros são pensados para que você consiga aproveitar de forma independente, com todas as instruções em português e suporte da agência pelo WhatsApp. Caso deseje guias em algum destino, podemos cotar à parte.\nTaxas locais cobradas diretamente nos hotéis (city tax)." 
     },
   ];
 
   return (
     <section
       id="duvidas"
-      className="py-10"
-      style={{
-        backgroundColor: "#A0D3F1",
-        fontFamily: '"Roboto Mono", monospace',
-      }}
+      className="py-10 no-shadows"
+      style={{ backgroundColor: "#A0D3F1", fontFamily: '"Roboto Mono", monospace' }}
     >
+      <style>{`
+        .no-shadows, .no-shadows * { box-shadow:none !important; text-shadow:none !important; filter:none !important; }
+      `}</style>
+
       <div className="mx-auto" style={{ maxWidth: "1280px" }}>
-        {/* ===== CABEÇALHO DESKTOP (inalterado) ===== */}
+        {/* Cabeçalho Desktop */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -165,110 +91,45 @@ const FAQ = () => {
           className="text-center mb-16 hidden md:block"
         >
           <div className="flex items-center justify-center gap-4 mb-6">
-            <img
-              src="/img/beneficios/question.png"
-              alt="Dúvidas frequentes"
-              className="w-[72px] h-[72px] object-contain"
-            />
-            <h2
-              className="font-extrabold leading-tight"
-              style={{
-                color: "#FD4F0D",
-                fontFamily: '"Work Sans", sans-serif',
-                fontSize: "65px",
-              }}
-            >
+            <img src="/img/beneficios/question.png" alt="Dúvidas frequentes" className="w-[72px] h-[72px] object-contain" />
+            <h2 className="font-extrabold leading-tight" style={{ color: "#FD4F0D", fontFamily: '"Work Sans", sans-serif', fontSize: "65px" }}>
               Dúvidas Frequentes
             </h2>
           </div>
         </motion.div>
 
-        {/* ===== CABEÇALHO MOBILE (igual ao print) ===== */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-          className="md:hidden mb-5 px-3"
-        >
+        {/* Cabeçalho Mobile */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="md:hidden mb-5 px-3">
           <div className="flex items-center gap-3">
-            <img
-              src="/img/beneficios/question.png"
-              alt="Dúvidas frequentes"
-              className="w-12 h-12 object-contain"
-            />
-            <h2
-              className="font-extrabold leading-[1] text-[35px]"
-              style={{
-                color: "#FD4F0D",
-                fontFamily: '"Work Sans", sans-serif',
-              }}
-            >
+            <img src="/img/beneficios/question.png" alt="Dúvidas frequentes" className="w-12 h-12 object-contain" />
+            <h2 className="font-extrabold leading-[1] text-[35px]" style={{ color: "#FD4F0D", fontFamily: '"Work Sans", sans-serif' }}>
               Dúvidas
-              <br />
-              Frequentes
+              <br /> Frequentes
             </h2>
           </div>
         </motion.div>
 
-        {/* ===== LISTA DESKTOP (inalterada) ===== */}
-        <div
-          className="space-y-4 mx-auto hidden md:block"
-          style={{ width: "1154px" }}
-        >
+        {/* Lista Desktop */}
+        <div className="space-y-4 mx-auto hidden md:block" style={{ width: "1154px" }}>
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
-            const isCircuits =
-              faq.question
-                .toLowerCase()
-                .includes("circuitos de machu picchu") ||
-              faq.answer === "__CIRCUITOS__";
 
             return (
-              <div
-                key={index}
-                className="rounded-2xl overflow-hidden shadow-md"
-                style={{ width: "1154px" }}
-              >
+              <div key={index} className="rounded-2xl overflow-hidden" style={{ width: "1154px" }}>
                 {/* Pergunta */}
                 <button
                   onClick={() => toggleItem(index)}
                   className="relative flex items-center justify-center text-center"
-                  style={{
-                    backgroundColor: "#FD4F0D",
-                    width: "1154px",
-                    height: "80px",
-                    paddingLeft: "24px",
-                    paddingRight: "56px",
-                  }}
+                  style={{ backgroundColor: "#FD4F0D", width: "1154px", height: "80px", paddingLeft: "24px", paddingRight: "56px" }}
                   aria-expanded={isOpen}
                   aria-controls={`faq-content-${index}`}
                 >
-                  <span
-                    className="block"
-                    style={{
-                      color: "#FFFFFF",
-                      fontFamily: '"Work Sans", sans-serif',
-                      fontWeight: 700,
-                      fontSize: "30px",
-                    }}
-                  >
+                  <span className="block" style={{ color: "#FFFFFF", fontFamily: '"Work Sans", sans-serif', fontWeight: 700, fontSize: "25px" }}>
                     {faq.question}
                   </span>
 
-                  <div
-                    className="absolute"
-                    style={{
-                      right: "16px",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      color: "#FFFFFF",
-                    }}
-                  >
-                    {isOpen ? (
-                      <ChevronUp className="w-7 h-7" aria-hidden="true" />
-                    ) : (
-                      <ChevronDown className="w-7 h-7" aria-hidden="true" />
-                    )}
+                  <div className="absolute" style={{ right: "16px", top: "50%", transform: "translateY(-50%)", color: "#FFFFFF" }}>
+                    {isOpen ? <ChevronUp className="w-7 h-7" aria-hidden="true" /> : <ChevronDown className="w-7 h-7" aria-hidden="true" />}
                   </div>
                 </button>
 
@@ -279,23 +140,14 @@ const FAQ = () => {
                       id={`faq-content-${index}`}
                       key="content"
                       initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "239px", opacity: 1 }}
+                      animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25, ease: "easeInOut" }}
-                      style={{
-                        backgroundColor: "#FFF2A6",
-                        width: "1154px",
-                        overflow: "hidden",
-                      }}
+                      style={{ backgroundColor: "#FFF2A6", width: "1154px", overflow: "hidden" }}
                     >
-                      <div className="h-full w-full flex items-center justify-center px-6">
-                        <div
-                          className="w-full"
-                          style={{ maxWidth: isCircuits ? "1000px" : "920px" }}
-                        >
-                          {isCircuits
-                            ? renderCircuits()
-                            : renderAnswer(faq.answer)}
+                      <div className="h-full w-full flex items-center justify-center px-6 py-4">
+                        <div className="w-full" style={{ maxWidth: "920px" }}>
+                          {renderAnswer(faq.answer)}
                         </div>
                       </div>
                     </motion.div>
@@ -306,21 +158,13 @@ const FAQ = () => {
           })}
         </div>
 
-        {/* ===== LISTA MOBILE (layout do print) ===== */}
+        {/* Lista Mobile */}
         <div className="md:hidden px-4 space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
-            const isCircuits =
-              faq.question
-                .toLowerCase()
-                .includes("circuitos de machu picchu") ||
-              faq.answer === "__CIRCUITOS__";
 
             return (
-              <div
-                key={index}
-                className="rounded-2xl overflow-hidden shadow-md"
-              >
+              <div key={index} className="rounded-2xl overflow-hidden">
                 {/* Pergunta */}
                 <button
                   onClick={() => toggleItem(index)}
@@ -329,28 +173,10 @@ const FAQ = () => {
                   aria-expanded={isOpen}
                   aria-controls={`m-faq-content-${index}`}
                 >
-                  <span
-                    className="text-left font-bold"
-                    style={{
-                      color: "#FFFFFF",
-                      fontFamily: '"Work Sans", sans-serif',
-                      fontSize: "14px",
-                      lineHeight: 1.1,
-                    }}
-                  >
+                  <span className="text-left font-bold" style={{ color: "#FFFFFF", fontFamily: '"Work Sans", sans-serif', fontSize: "14px", lineHeight: 1.1 }}>
                     {faq.question}
                   </span>
-                  {isOpen ? (
-                    <ChevronUp
-                      className="w-5 h-5 text-white"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <ChevronDown
-                      className="w-5 h-5 text-white"
-                      aria-hidden="true"
-                    />
-                  )}
+                  {isOpen ? <ChevronUp className="w-5 h-5 text-white" aria-hidden="true" /> : <ChevronDown className="w-5 h-5 text-white" aria-hidden="true" />}
                 </button>
 
                 {/* Resposta */}
@@ -367,13 +193,7 @@ const FAQ = () => {
                       style={{ backgroundColor: "#FFF2A6" }}
                     >
                       <div className="px-4 py-3">
-                        {isCircuits ? (
-                          renderCircuits()
-                        ) : (
-                          <div className="text-[#000]">
-                            {renderAnswer(faq.answer, true /* small */)}
-                          </div>
-                        )}
+                        <div className="text-[#000]">{renderAnswer(faq.answer, true)}</div>
                       </div>
                     </motion.div>
                   )}

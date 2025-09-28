@@ -2,11 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
+  const whatsappMessage = "Olá! Estou navegando na página da viagem para o Atacama e gostaria de tirar uma dúvida!";
+
   return (
     <footer id="sobre" className="py-16 relative" style={{ backgroundColor: '#000000' }}>
       <div className="container">
 
-        {/* ============ MOBILE (igual já estava) ============ */}
+        {/* ============ MOBILE ============ */}
         <div className="md:hidden">
           <img
             src="/img/logorodape.png"
@@ -54,7 +56,7 @@ const Footer = () => {
 
           <div className="mb14">
             <a
-              href="https://api.whatsapp.com/send?phone=5554991831562"
+              href={`https://api.whatsapp.com/send?phone=5554991831562&text=${encodeURIComponent(whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Fale conosco no WhatsApp"
@@ -93,7 +95,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* ============ DESKTOP (igual ao primeiro print) ============ */}
+        {/* ============ DESKTOP ============ */}
         <div className="hidden md:grid md:grid-cols-3 gap-12 items-start text-left">
           {/* Coluna 1: LOGO — com respiro à direita */}
           <motion.div
@@ -176,7 +178,7 @@ const Footer = () => {
 
             {/* Botão oval contornado */}
             <a
-              href="https://api.whatsapp.com/send?phone=5554991831562"
+              href={`https://api.whatsapp.com/send?phone=5554991831562&text=${encodeURIComponent(whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Fale conosco no WhatsApp"
