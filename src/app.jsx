@@ -45,16 +45,16 @@ export default function App() {
         size={58}
         right={24}
         bottom={28}
-        safeBottomBump={62}
+        safeBottomBump={32}
         imageScale={1.15}
         imageShiftX={0}
         imageShiftY={-2}
         // Configurações para MOBILE
-        mobileSize={32}
-        mobileRight={24}
-        mobileBottom={34}
-        mobileSafeBottomBump={508}
-        mobileImageScale={1.15}
+        mobileSize={50}
+        mobileRight={5}
+        mobileBottom={6}
+        mobileSafeBottomBump={60}
+        mobileImageScale={1.05}
         mobileImageShiftX={0}
         mobileImageShiftY={-2}
       />
