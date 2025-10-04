@@ -17,7 +17,7 @@ import FloatingWpp from "./components/floatingWhatsApp";
 export default function App() {
   const wppPhone = "5554991831562";
   const wppMsg =
-    "Olá! Estou navegando na página da viagem para o Atacama e gostaria de tirar uma dúvida!";
+    "Olá! Estou navegando na página da viagem para a Itália e gostaria de tirar uma dúvida!";
 
   return (
     <div className="min-h-screen bg-white">
@@ -35,7 +35,23 @@ export default function App() {
       </main>
       <Footer />
 
-      <ScrollToTopButton />
+      {/* Setinha para MOBILE - aparece só em mobile */}
+      <div className="block md:hidden">
+        <ScrollToTopButton 
+          threshold={40} 
+          bottom={0}
+          right={15} 
+        />
+      </div>
+
+      {/* Setinha para DESKTOP - aparece só em desktop */}
+      <div className="hidden md:block">
+        <ScrollToTopButton 
+          threshold={80} 
+          bottom={15} 
+          right={32} 
+        />
+      </div>
 
       <FloatingWpp
         phone={wppPhone}
@@ -43,17 +59,17 @@ export default function App() {
         imageSrc="/img/logowpp.png"
         // Configurações para DESKTOP
         size={58}
-        right={24}
-        bottom={28}
-        safeBottomBump={32}
+        right={26}
+        bottom={30}
+        safeBottomBump={40}
         imageScale={1.15}
         imageShiftX={0}
         imageShiftY={-2}
         // Configurações para MOBILE
-        mobileSize={50}
-        mobileRight={5}
-        mobileBottom={6}
-        mobileSafeBottomBump={60}
+        mobileSize={55}
+        mobileRight={10}
+        mobileBottom={30}
+        mobileSafeBottomBump={25}
         mobileImageScale={1.05}
         mobileImageShiftX={0}
         mobileImageShiftY={-2}

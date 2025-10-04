@@ -1,329 +1,191 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
+import React from "react";
+import { motion } from "framer-motion";
 
-const Pricing = () => {
-  const categories = [
-    {
-      name: 'Categoria A',
-      price: 'R$ 5.390',
-      priceNote: 'Por pessoa em quarto duplo',
-      ctaHref:
-        'https://api.whatsapp.com/send?phone=5554991831562&text=Ol%C3%A1!%20Estou%20navegando%20na%20p%C3%A1gina%20de%20viagem%20para%20o%20Atacama%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20categoria%20A%20de%20hospedagem.',
-      labels: { hotel: 'Hostal Inti e Killa ou similar' },
-      description: {
-        hotel:
-          'Opção econômica, perfeita para viajantes que buscam economizar sem comprometer a experiência. Os quartos são simples, mas oferecem o básico para uma estadia confortável. Esta escolha é adequada para aqueles que preferem gastar menos com acomodação e mais com atividades e exploração do Deserto do Atacama.',
-      },
-      images: [
-        { src: '/img/beneficios/categoriaimagemum.png' },
-        { src: '/img/beneficios/categoriaimagemdois.png' },
-        { src: '/img/beneficios/categoriaimagemtres.png' },
-      ],
-    },
-    {
-      name: 'Categoria B',
-      price: 'R$ 5.990',
-      priceNote: 'Por pessoa em quarto duplo',
-      ctaHref:
-        'https://api.whatsapp.com/send?phone=5554991831562&text=Ol%C3%A1!%20Estou%20navegando%20na%20p%C3%A1gina%20de%20viagem%20para%20o%20Atacama%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20categoria%20B%20de%20hospedagem.',
-      labels: { hotel: 'Hotel Parina ou similar' },
-      description: {
-        hotel:
-          'Uma escolha intermediária, que oferece um equilíbrio entre conforto e acessibilidade. Os viajantes encontrarão quartos bem equipados e comodidades para uma estadia agradável. É uma opção sólida para aqueles que desejam desfrutar de um nível razoável de conforto sem ultrapassar o orçamento',
-        machupicchu:
-          'Opção básica, perfeita para pernoitar antes de Machu Picchu. Conforto simples, mas suficiente para explorar a cidade e estar bem localizado para a visita.',
-        train:
-          'Uma experiência completa durante a viagem entre Cusco e Águas Calientes. O Vistadome conta com janelas panorâmicas maiores, que tornam o trajeto ainda mais impressionante. Além disso, oferece maior espaço entre os assentos, mais conforto, snacks inclusos e apresentações culturais a bordo, trazendo a cultura andina para dentro do trem.',
-      },
-      images: [
-        { src: '/img/beneficios/categoriabimagemum.png' },
-        { src: '/img/beneficios/categoriabimagemdois.png' },
-        { src: '/img/beneficios/categoriabimagemtres.png' },
-      ],
-    },
-    {
-      name: 'Categoria C',
-      price: 'R$ 6.990',
-      priceNote: 'Por pessoa em quarto duplo',
-      ctaHref:
-        'https://api.whatsapp.com/send?phone=5554991831562&text=Ol%C3%A1!%20Estou%20navegando%20na%20p%C3%A1gina%20de%20viagem%20para%20o%20Atacama%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20categoria%20C%20de%20hospedagem.',
-      labels: { hotel: 'Poblado Kimal ou similar' },
-      description: {
-        hotel:
-          'Destaca-se como uma opção de hospedagem sofisticada e imersa na cultura local. Oferece aos seus hóspedes uma experiência única, harmonizando a beleza natural do deserto com instalações elegantes. Os quartos bem decorados, combinados com ótimo atendimento, elevam a estadia a um nível de conforto e sofisticação incomparáveis.',
-      },
-      images: [
-        { src: '/img/beneficios/categoriacimagemum.png' },
-        { src: '/img/beneficios/categoriacimagemdois.png' },
-        { src: '/img/beneficios/categoriacimagemtres.png' },
-      ],
-    },
-  ];
+/* ====== HOTÉIS (4 cards) ====== */
+const hotels = [
+  { titleTop: "Piemonte Hotel", titleBottom: "ou Similar", img: "/img/beneficios/hotelumitalia.png", city: "Roma", nights: "4 noites" },
+  { titleTop: "San Giorgio e Olimpic", titleBottom: "ou Similar", img: "/img/beneficios/hoteldoisitalia.png", city: "Florença", nights: "3 noites" },
+  { titleTop: "Hotel Villa Rosa", titleBottom: "ou Similar", img: "/img/beneficios/hoteltresitalia.png", city: "Veneza", nights: "2 noites" },
+  { titleTop: "Ibis Milano Centro", titleBottom: "ou Similar", img: "/img/beneficios/hotelquatroitalia.png", city: "Milão", nights: "2 noites" },
+];
+
+/* ====== BOTÕES DOS AEROPORTOS ====== */
+const airportColumns = [
+  [{ code: "GRU", price: "R$ 11.950" }],
+  [
+    { code: "POA", price: "R$ 12.950" },
+    { code: "CGB", price: "R$ 12.950" },
+  ],
+  [
+    { code: "CWB", price: "R$ 12.950" },
+    { code: "CNF", price: "R$ 12.950" },
+  ],
+  [{ code: "FLN", price: "R$ 12.950" }],
+];
+
+// Lista achatada para uso no mobile
+const flatButtons = airportColumns.flat();
+
+export default function Pricing() {
+  const whatsappPhone = "555491831562";
+
+  const getWhatsappMsg = (airportCode) =>
+    encodeURIComponent(
+      `Olá! Estou navegando na página da viagem para a Itália e gostaria de tirar uma dúvida sobre as passagens (${airportCode}), os horarios e os valores!`
+    );
+
+  const getWhatsappHref = (airportCode) =>
+    `https://wa.me/${whatsappPhone}?text=${getWhatsappMsg(airportCode)}`;
 
   return (
-    <section id="hospedagem" className="py-10 no-shadows" style={{ backgroundColor: '#AC0039' }}>
-      <style>{`.no-shadows, .no-shadows * { box-shadow:none !important; text-shadow:none !important; filter:none !important; }`}</style>
+    <section
+      id="hospedagem"
+      className="py-12 md:py-16"
+      style={{ backgroundColor: "#AC0039" }}
+    >
       <div className="container">
-        {/* ===== Header Desktop ===== */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10 hidden md:block"
-        >
-          <div className="flex items-center justify-center gap-4 mb-11">
-            <h2
-              className="font-extrabold text-[65px] leading-[0.88] tracking-[-0.02em]"
-              style={{ color: '#F9F2E1' }}
-            >
-              <img
-                src="/img/beneficios/iconemoeda.png"
-                alt="Ícone moeda"
-                className="w-16 h-16 inline-block align-middle mr-4"
-                style={{ objectFit: 'contain' }}
-              />
-              <span className="align-middle">
-                Valor do pacote conforme <br />
-                opção de hospedagem <br />
-                escolhida
-              </span>
-            </h2>
-          </div>
-        </motion.div>
-
-        {/* ===== Header Mobile ===== */}
+        {/* Título */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-          className="md:hidden mb-6"
+          transition={{ duration: 0.6 }}
+          className="mb-8 md:mb-10"
         >
-          <div className="flex items-start justify-center gap-2">
+          <div className="flex items-center gap-9 justify-start md:justify-center">
             <img
-              src="/img/beneficios/iconemoeda.png"
-              alt="Ícone moeda"
-              className="w-10 h-10 shrink-0 mt-[2px]"
-              style={{ objectFit: 'contain' }}
+              src="/img/beneficios/caminha.png"
+              alt="Ícone cama"
+              className="w-18 h-18 md:w-20 md:h-20"
             />
             <h2
-              className="font-bold leading-[1] text-[30px] text-esquerda"
-              style={{ color: '#F9F2E1', fontFamily: '"Work Sans", sans-serif' }}
+              className="
+                font-extrabold tracking-[-0.01em]
+                text-left md:text-center
+              "
+              style={{
+                color: "#F9F2E1",
+                fontFamily: '"Work Sans", sans-serif',
+                fontSize: "clamp(40px, 4.2vw, 56px)",
+                lineHeight: 1,
+              }}
             >
-              <strong>
-                Valor do pacote conforme<br />
-                opção de hospedagem escolhida
-              </strong>
+              Hotéis Previstos
             </h2>
           </div>
         </motion.div>
 
-        {/* ===== Categorias ===== */}
-        <div className="space-y-16">
-          {categories.map((category, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="rounded-3xl p-6"
-              style={{ backgroundColor: '#FAF3E1' }}
-            >
-              <div className="grid lg:grid-cols-3 gap-8 mb-6">
-                {/* ESQUERDA */}
-                <div className="lg:col-span-2">
-                  {/* Títulos */}
-                  <h3
-                    className="mb-7 hidden md:block"
-                    style={{
-                      color: '#FD4F0D',
-                      fontFamily: '"Work Sans", sans-serif',
-                      fontSize: '60px',
-                      fontWeight: 900,
-                      lineHeight: 0.95,
-                      letterSpacing: '-0.01em',
-                    }}
-                  >
-                    {category.name}
-                  </h3>
-                  <h3
-                    className="mb-3 md:hidden"
-                    style={{
-                      color: '#FD4F0D',
-                      fontFamily: '"Work Sans", sans-serif',
-                      fontWeight: 900,
-                      fontSize: '32px',
-                      lineHeight: 1,
-                      letterSpacing: '-0.01em',
-                    }}
-                  >
-                    {category.name}
-                  </h3>
+        {/* Cartão bege principal */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="rounded-3xl px-4 md:px-8 py-6 md:py-10"
+          style={{ backgroundColor: "#F9F2E1" }}
+        >
+          {/* Grade de hotéis */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-12">
+            {hotels.map((h, i) => (
+              <div key={i} className="text-center">
+                <h3
+                  className="mb-3 text-[24px] md:text-[20px] leading-[1.1] font-extrabold"
+                  style={{ color: "#222223", fontFamily: '"Work Sans", sans-serif' }}
+                >
+                  {h.titleTop}
+                  <br />
+                  <span style={{ fontWeight: 800 }}>{h.titleBottom}</span>
+                </h3>
 
-                  {/* Blocos: rótulo + parágrafo */}
-                  <div
-                    className="space-y-3 md:space-y-4"
-                    style={{
-                      color: '#222223',
-                      fontFamily: '"Roboto Mono", monospace',
-                      fontSize: '10px',
-                      lineHeight: 1.25,
-                    }}
-                  >
-                    {/* HOTEL */}
-                    <div>
-                      <p
-                        className="font-bold md:text-[18px]"
-                        style={{ fontFamily: '"Work Sans", sans-serif' }}
-                      >
-                        {category.labels.hotel}
-                        {category.description?.hotel ? ':' : ''}
-                      </p>
-                      {category.description?.hotel && (
-                        <p className="md:text-[15px] md:leading-[1.35]">
-                          {category.description.hotel}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* MACHU PICCHU (se existir) */}
-                    {category.labels?.machu && category.description?.machupicchu && (
-                      <div>
-                        <p className="font-bold md:text-[18px]" style={{ fontFamily: '"Work Sans", sans-serif' }}>
-                          {category.labels.machu}:
-                        </p>
-                        <p className="md:text-[15px] md:leading-[1.35]">
-                          {category.description.machupicchu}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* TREM (se existir) */}
-                    {category.labels?.train && category.description?.train && (
-                      <div>
-                        <p className="font-bold md:text-[18px]" style={{ fontFamily: '"Work Sans", sans-serif' }}>
-                          {category.labels.train}:
-                        </p>
-                        <p className="md:text-[15px] md:leading-[1.35]">
-                          {category.description.train}
-                        </p>
-                      </div>
-                    )}
-                  </div>
+                <div className="mx-auto rounded-2xl overflow-hidden shadow" style={{ width: 280, height: 190 }}>
+                  <img src={h.img} alt={h.titleTop} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                 </div>
 
-                {/* DIREITA (PREÇO + BOTÃO) */}
-                <div className="flex flex-col items-center lg:items-end justify-center">
-                  <div className="relative flex flex-col items-center w-[260px] md:w-[350px]">
-                    <div
-                      className="text-center md:block w-[260px] h-[130px] md:w-[350px] md:h-[163px] rounded-[18px] md:rounded-[24px]"
-                      style={{ backgroundColor: '#A0D3F1' }}
-                    >
-                      <div className="pt-3 md:pt-4">
-                        <span
-                          className="uppercase font-bold block text-[10px] md:text-[15px] leading-[1.2] md:leading-[1.35]"
-                          style={{ color: '#222223', fontFamily: '"Roboto Mono", monospace' }}
-                        >
-                          A partir de
-                        </span>
-                        <div
-                          className="leading-none mt-1 text-[28px] md:text-[46px] font-extrabold"
-                          style={{ color: '#FD4F0D', fontFamily: '"Work Sans", sans-serif' }}
-                        >
-                          {category.price}
-                        </div>
-                        <div
-                          className="mt-1 text-[12px] md:text-[16px] leading-[1.2] md:leading-[1.35]"
-                          style={{ color: '#222223', fontFamily: '"Roboto Mono", monospace' }}
-                        >
-                          {category.priceNote}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="-mt-8 md:-mt-5 z-10">
-                      <a
-                        href={category.ctaHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Abrir WhatsApp para mais informações sobre ${category.name}`}
-                      >
-                        <Button
-                          className="
-                            rounded-full transition-all duration-300 hover:scale-105
-                            w-[240px] h-[44px] md:w-[300px] md:h-[56px]
-                          "
-                          style={{
-                            backgroundColor: '#FD4F0D',
-                            color: '#222223',
-                            fontWeight: 800,
-                            letterSpacing: '0.3px',
-                            fontFamily: '"Work Sans", sans-serif',
-                          }}
-                        >
-                          VEJA TODAS AS INFORMAÇÕES
-                        </Button>
-                      </a>
-                    </div>
-                  </div>
+                <div className="mt-3">
+                  <p className="text-[12px]" style={{ color: "#222223", fontFamily: '"Roboto Mono", monospace', lineHeight: 1.15 }}>
+                    {h.city}
+                    <br />
+                    {h.nights}
+                  </p>
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* GALERIA */}
-              <div className="grid md:grid-cols-3 gap-6">
-                {category.images.map((img, imgIndex) => (
-                  <div key={imgIndex} className="rounded-2xl overflow-hidden">
-                    <h4
-                      className="text-center mb-2"
+          {/* Respiro */}
+          <div className="mt-12 md:mt-14" />
+
+          {/* Valor do Pacote */}
+          <div>
+            <div className="text-center mb-4 md:mb-6">
+              <div className="flex items-center justify-center gap-3">
+                <img src="/img/beneficios/iconemoeda.png" alt="Ícone moeda" className="w-8 h-8 md:w-10 md:h-10" />
+                <h3
+                  className="font-extrabold"
+                  style={{ color: "#FD4F0D", fontFamily: '"Work Sans", sans-serif', fontSize: "clamp(22px, 3.4vw, 44px)", lineHeight: 1 }}
+                >
+                  Valor do Pacote
+                </h3>
+              </div>
+
+              <div className="flex items-center justify-center gap-2 mt-2">
+                <img src="/img/clique.png" alt="Ícone informação" width="30" height="30" className="flex-shrink-0" />
+                <p className="text-[10px] md:text-[12px]" style={{ color: "#222223", fontFamily: '"Roboto Mono", monospace', opacity: 0.8 }}>
+                  Clique nos aeroportos para saber mais sobre horários e valores
+                </p>
+              </div>
+            </div>
+
+            {/* ======= BOTÕES: Mobile (duas colunas) ======= */}
+            <div className="grid grid-cols-2 gap-3 md:hidden">
+              {flatButtons.map(({ code, price }, idx) => (
+                <a
+                  key={`mob-${code}-${idx}`}
+                  href={getWhatsappHref(code)}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Falar no WhatsApp sobre saída de ${code}`}
+                  className="inline-flex items-center justify-center w-full h-11 rounded-full px-3 text-center font-extrabold"
+                  style={{
+                    backgroundColor: "#FD4F0D",
+                    color: "#fff",
+                    fontFamily: '"Work Sans", sans-serif',
+                    letterSpacing: 0.2,
+                  }}
+                >
+                  {code} – {price}
+                </a>
+              ))}
+            </div>
+
+            {/* ======= BOTÕES: Tablet/Desk (layout original) ======= */}
+            <div className="hidden md:grid grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4 items-start">
+              {airportColumns.map((col, idx) => (
+                <div key={`desk-col-${idx}`} className="flex flex-col gap-4 w-full items-center">
+                  {col.map(({ code, price }, k) => (
+                    <a
+                      key={`desk-${code}-${k}`}
+                      href={getWhatsappHref(code)}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Falar no WhatsApp sobre saída de ${code}`}
+                      className="inline-flex items-center justify-center px-6 h-11 rounded-full"
                       style={{
-                        color: '#FD4F0D',
-                        fontFamily: '"Work Sans", sans-serif',
+                        backgroundColor: "#FD4F0D",
+                        color: "#fff",
                         fontWeight: 800,
-                        fontSize: '35px',
-                        lineHeight: 1.1,
+                        fontFamily: '"Work Sans", sans-serif',
+                        letterSpacing: 0.2,
+                        minWidth: 230,
                       }}
                     >
-                      {img.title}
-                    </h4>
-                    <a
-                      href={img.src}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block group rounded-2xl overflow-hidden mx-auto"
-                      style={{ width: '350px', height: '250px' }}
-                    >
-                      <img
-                        className="hidden md:block w-[350px] h-[250px] object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
-                        alt={img.caption}
-                        src={img.src}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <img
-                        className="md:hidden block object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
-                        alt={img.caption}
-                        src={img.src}
-                        loading="lazy"
-                        decoding="async"
-                        style={{ width: 328, height: 234 }}
-                      />
+                      {code} – {price}
                     </a>
-                    <p
-                      className="text-center mt-2"
-                      style={{ color: '#222223', fontFamily: '"Roboto Mono", monospace' }}
-                    >
-                      <span className="md:hidden text-[10px] leading-[1.2]">{img.caption}</span>
-                      <span className="hidden md:inline text-[15px] leading-[1.35]">{img.caption}</span>
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default Pricing;
+}

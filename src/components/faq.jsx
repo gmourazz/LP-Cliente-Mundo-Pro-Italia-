@@ -31,52 +31,36 @@ const FAQ = () => {
 
   const faqs = [
     { 
-      question: "Essa viagem é em excursão?", 
-      answer: "Não, nossa viagem não é em grupo fechado, o que significa que você terá a liberdade de explorar e aproveitar cada momento conforme suas preferências. Nossos roteiros não são aquelas \"caravanas\" em ônibus e com guia que passam correndo pelo ponto turístico e você não tem nem tempo de bater foto. Não se preocupe se você nunca viajou ou se não fala inglês, estaremos auxiliando em tudo." 
+      question: "É uma viagem em grupo?", 
+      answer: "Não. Nossos roteiros não são aquelas caravanas em ônibus e com guia que passam correndo pelo ponto turístico e você não tem nem tempo de bater foto. Não se preocupe se você nunca viajou ou se não fala inglês, estaremos auxiliando em tudo."
     },
     { 
       question: "Como será o suporte da agência durante a viagem?", 
-      answer: "Aqui na Mundo Pró, você não receberá um \"Boa viagem e tchau\". Estaremos com você durante toda a viagem, auxiliando em tudo o que for necessário. Somos chatos igual mãe, gostamos de perguntar se você já chegou e adoramos receber fotos nas pirâmides, tomando aquela cerveja no resort no Caribe, subindo na Torre Eiffel ou em qualquer outro lugar que você achar diferentão. Para acompanhá-lo em sua viagem, criamos grupos no WhatsApp com o atendente e uma pessoa de suporte. Assim, terá auxílio durante toda a sua jornada." 
+      answer: "Aqui na Mundo Pró, você não receberá um 'Boa viagem e tchau'. Estaremos com você durante toda a viagem, auxiliando em tudo o que for necessário. Somos chatos igual mãe, gostamos de perguntar se você já chegou e adoramos receber fotos nas pirâmides, tomando aquela cerveja no resort no Caribe, subindo na Torre Eiffel ou em qualquer outro lugar que você achar diferentão. Para acompanhá-lo em sua viagem, criamos grupos no WhatsApp com o atendente e uma pessoa de suporte. Assim, terá auxílio durante toda a sua jornada." 
     },
     { 
-      question: "Posso mudar a ordem das cidades ou incluir/excluir cidades?", 
-      answer: "Sim. O pacotes que enviamos é apenas uma sugestão otimizada, mas podemos ajustar conforme o seu interesse. Se quiser incluir ou excluir cidades, adaptamos o planejamento e refazemos a simulação de valores para você." 
-    },
-    { 
-      question: "Posso escolher outra data ou outros hotéis?", 
-      answer: "Claro. Nós sugerimos estes hotéis, mas podemos listar outras opções para que escolham.\n\nA data que está no PDF é apenas uma sugestão. Podemos simular em outro período se quiser. Mas claro, pode ter alteração no valor." 
+      question: "Posso escolher outros hotéis?", 
+      answer: "Claro. Nós sugerimos estes hotéis, mas podemos listar outras opções para que escolham." 
     },
     { 
       question: "Como será feito meu roteiro personalizado e quais as dicas que a agência dará?", 
-      answer: "Nós preparamos um roteiro dia a dia com ingressos, mapas, sugestões de passeios, restaurantes e TODAS as dicas que vai precisar. Você sai do Brasil com TODOS os passos organizados.\n\nA gente vai te dar dicas sobre transporte público, compra de chip de internet, cartões de crédito e até mesmo sobre imigração. Nós vamos cuidar de todos os detalhes da sua viagem." 
+      answer: "Nós preparamos um roteiro dia a dia com ingressos, mapas, sugestões de passeios, restaurantes e TODAS as dicas que vai precisar. Você sai do Brasil com TODOS os passos organizados. A gente vai te dar dicas sobre transporte público, compra de chip de internet, cartões de crédito e até mesmo sobre imigração. Nós vamos cuidar de todos os detalhes da sua viagem." 
     },
     { 
-      question: "Posso incluir transfer do aeroporto ao hotel?", 
-      answer: "Sim, podemos incluir transfers privativos ou compartilhados, de acordo com sua preferência e orçamento. Se preferir, também damos orientações detalhadas de como chegar de transporte público." 
-    },
-    { 
-      question: "Qual o gasto médio com alimentação?", 
-      answer: "Perfil Econômico:\nAlimentação: Entre 20 a 40 euros por dia.\nFast food, comida em mercado, restaurantes simples.\nTransporte Público: Cerca de 10 euros por dia.\n\nPerfil Médio:\nAlimentação: Entre 50 a 100 euros por dia.\nRestaurantes bem avaliados com pratos com valor médio de 15 euros.\nTransporte: Cerca de 20 a 40 euros por dia. Uber/Taxi são as opções de transporte.\n\nPerfil de Luxo:\nAlimentação: Acima de 150 euros por dia.\nRestaurantes premiados com pratos especiais.\nTransporte: Depende mais de opções privativas, podendo variar de 50 a 100 euros por dia." 
-    },
-    { 
-      question: "Quais são os métodos de pagamento aceitos para o pacote de viagem?", 
+      question: "Quais as formas do pagamento?", 
       answer: "Isso vai depender da companhia aérea escolhida. Algumas parcelam no cartão em 5 ou 6x e outras em 10x. Temos também opção de parcelamento no boleto. Consulte-nos." 
     },
     { 
       question: "Mas moro longe da agência, como vou fazer o pagamento?", 
       answer: "Não se preocupe. Nosso atendimento é 100% online e seguro." 
-    },
-    { 
-      question: "O que não está incluso no pacote?", 
-      answer: "Serviços que não estejam listados no roteiro.\nTransfers\nRefeições (almoço e jantar) e gastos pessoais, como compras ou transporte fora do roteiro.\nGuias locais particulares — nossos roteiros são pensados para que você consiga aproveitar de forma independente, com todas as instruções em português e suporte da agência pelo WhatsApp. Caso deseje guias em algum destino, podemos cotar à parte.\nTaxas locais cobradas diretamente nos hotéis (city tax)." 
-    },
+    }
   ];
 
   return (
     <section
       id="duvidas"
       className="py-10 no-shadows"
-      style={{ backgroundColor: "#A0D3F1", fontFamily: '"Roboto Mono", monospace' }}
+      style={{ backgroundColor: "#F0D9D1", fontFamily: '"Roboto Mono", monospace' }} 
     >
       <style>{`
         .no-shadows, .no-shadows * { box-shadow:none !important; text-shadow:none !important; filter:none !important; }
